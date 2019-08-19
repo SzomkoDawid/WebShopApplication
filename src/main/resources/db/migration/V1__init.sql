@@ -50,7 +50,7 @@ CREATE TABLE products
     name         VARCHAR(40) NOT NULL,
     description  VARCHAR(40) NOT NULL,
     price        int         NOT NULL,
-    product_type VARCHAR(40) NOT NULL,
+    product_type INTEGER(40) NOT NULL,
     author_id    bigint(20)  NOT NULL,
     category_id bigint(20) NOT NULL ,
     PRIMARY KEY (id),
@@ -74,7 +74,7 @@ CREATE table orders
     date_of_order    DATETIME NOT NULL,
     order_lines_id   bigint(40)   NOT NULL,
     users_id         bigint(20)   NOT NULL,
-    status           VARCHAR(40)  NOT NULL,
+    status           INTEGER(40)  NOT NULL,
     primary key (id),
     FOREIGN KEY (order_lines_id) REFERENCES order_lines (id),
     FOREIGN KEY (users_id) REFERENCES users (id)
