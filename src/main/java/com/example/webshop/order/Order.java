@@ -1,8 +1,8 @@
-package com.example.webshop.model;
+package com.example.webshop.order;
+import com.example.webshop.user.User;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 

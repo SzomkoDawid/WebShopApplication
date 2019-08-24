@@ -1,8 +1,8 @@
-package com.example.webshop.model;
+package com.example.webshop.cart;
 
+import com.example.webshop.order.OrderLine;
 import lombok.*;
 
-import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;

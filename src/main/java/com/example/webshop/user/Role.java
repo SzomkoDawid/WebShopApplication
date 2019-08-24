@@ -1,4 +1,4 @@
-package com.example.webshop.model;
+package com.example.webshop.user;
 import lombok.*;
 
 import javax.persistence.*;

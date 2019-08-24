@@ -1,4 +1,4 @@
-package com.example.webshop.model;
+package com.example.webshop.user;
 
 import lombok.*;
 
@@ -32,5 +32,5 @@ public class User {
     @OneToMany (fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Collection<Role> roles = new ArrayList<>();
-
+    
 }

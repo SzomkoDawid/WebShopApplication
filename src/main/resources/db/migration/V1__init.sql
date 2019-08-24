@@ -11,7 +11,7 @@ CREATE table addresses
 start transaction ;
 CREATE table category(
     id bigint (20) NOT NULL AUTO_INCREMENT,
-    types_of_category VARCHAR (60) NOT NULL,
+    types_of_category enum('BOOK', 'EBOOK', 'AUDIOBOOK', 'PRESS', 'OTHER') NOT NULL,
     PRIMARY KEY (id)
 );
 start transaction ;
@@ -39,8 +39,7 @@ start transaction ;
 CREATE TABLE authors
 (
     id         bigint(20)  NOT NULL AUTO_INCREMENT,
-    first_name VARCHAR(40) NOT NULL,
-    last_name  VARCHAR(40) NOT NULL,
+    name varchar(40) NOT NULL,
     PRIMARY KEY (id)
 );
 start transaction ;
@@ -48,9 +47,12 @@ CREATE TABLE products
 (
     id           bigint(20)  NOT NULL AUTO_INCREMENT,
     name         VARCHAR(40) NOT NULL,
+    stock_amount INTEGER (40) NOT NULL,
+    picture_url VARCHAR (400) NOT NULL,
     description  VARCHAR(40) NOT NULL,
-    price        int         NOT NULL,
-    product_type INTEGER(40) NOT NULL,
+    price        double      NOT NULL,
+    product_type enum('FANTASY', 'CRIMINAL', 'BIOGRAPHY', 'ENTERTAINMENT', 'HISTORY', 'COMICS', 'OTHER')
+        NOT NULL,
     author_id    bigint(20)  NOT NULL,
     category_id bigint(20) NOT NULL ,
     PRIMARY KEY (id),
@@ -74,7 +76,7 @@ CREATE table orders
     date_of_order    DATETIME NOT NULL,
     order_lines_id   bigint(40)   NOT NULL,
     users_id         bigint(20)   NOT NULL,
-    status           INTEGER(40)  NOT NULL,
+    status           enum ('OCZEKUJACE', 'WYSLANE') NOT NULL,
     primary key (id),
     FOREIGN KEY (order_lines_id) REFERENCES order_lines (id),
     FOREIGN KEY (users_id) REFERENCES users (id)

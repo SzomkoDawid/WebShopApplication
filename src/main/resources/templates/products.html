@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Produkty</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/products.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+<table class="table table-striped table-responsive-md">
+    <thead>
+    <tr>
+        <th scope="col">AUTOR</th>
+        <th scope="col">PRODUKT</th>
+        <th scope="col">ILOŚĆ</th>
+        <th scope="col">ZDJĘCIE</th>
+        <th scope="col">CENA</th>
+        <th scope="col">OPIS</th>
+        <th scope="col">KATEGORIA</th>
+        <th scope="col">TYP</th>
+        <th>Akcja</th>
+    </tr>
+    </thead>
+    <tbody>
+<form action="#" th:action="@{/addProduct}" th:object="${product}" method="post">
+    <tr>
+        <td>
+    <input type="text" placeholder="Autor" th:field="*{author.name}">
+        </td>
+        <td>
+    <input type="text" placeholder="Nazwa produktu" th:field="*{name}">
+        </td>
+        <td>
+    <input type="number" placeholder="Ilość" th:field="*{stockamount}"> szt
+        </td>
+        <td>
+    <input type="url" placeholder="Url Zdjęcia" th:field="*{pictureUrl}">
+        </td>
+        <td>
+    <input type="number" placeholder="Cena" th:field="*{price}"> zł
+        </td>
+        <td>
+    <input type="text" placeholder="Opis" th:field="*{description}">
+        </td>
+        <td>
+    <select name="categoryType">
+        <option th:value="''"  th:text="'Kategoria'"></option>
+        <option th:each="ct : ${productList}" th:value="${ct.category}" th:text="${ct.category}"></option>
+    </select>
+        </td>
+        <td>
+    <select name="productType">
+        <option th:value="''" th:text="'Typ produktu'"></option>
+        <option th:each="pt : ${productList}" th:value="${pt.productType}" th:text="${pt.productType}"></option>
+    </select>
+        </td>
+    <td>
+        <input type="submit" value="dodaj">
+    </td>
+    <input type="reset" value="Wyczyść">
+    </tr>
+</form>
+    <th:block th:each="product : ${productList}">
+        <tr>
+            <td th:text="${product.author.name}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.stockamount}"></td>
+            <td>
+                <img th:attr="src=${product.pictureUrl}"
+                     height="50" width="50"/></img>
+            </td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.description}"></td>
+            <td th:text="${product.category}"></td>
+            <td th:text="${product.productType}"></td>
+            <td>
+                <a th:href="@{/deleteprdct/{id}(id=${product.id})}"
+                   class="btn btn-primary">
+                    <i class="fas fa-user-times ml-2">usuń</i>
+                </a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+</tbody>
+</body>
+</html>
