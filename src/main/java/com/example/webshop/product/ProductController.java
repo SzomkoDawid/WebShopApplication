@@ -1,7 +1,6 @@
 package com.example.webshop.product;
+import com.example.webshop.category.Category;
 import com.example.webshop.category.CategoryService;
-import com.example.webshop.category.CategoryType;
-import com.example.webshop.product.author.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,24 +10,25 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     private ProductService productService;
-    private AuthorService authorService;
     private CategoryService categoryService;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, CategoryService categoryService) {
         this.productService = productService;
+        this.categoryService = categoryService;
     }
     @GetMapping({"/products", "products"})
-    public String getAllUsers(Model model){
+    public String getAllProducts(Model model){
         model.addAttribute("productList", productService.findAll());
+        model.addAttribute("categoryList", categoryService.findAll());
         model.addAttribute("product", new Product());
         return "products";
     }
     @PostMapping("/addProduct")
-    public String addProduct(Model model, @ModelAttribute Product product){
+    public String addProduct(Model model, @ModelAttribute Product product, @ModelAttribute(name = "cat") String cat_id){
+        Category category = categoryService.findById(Long.valueOf(cat_id));
+        product.setCategory(category);
         model.addAttribute(productService.addProduct(product));
-        model.addAttribute("productTypes", ProductType.values());
-        model.addAttribute("categoryTypes", CategoryType.values());
         return "redirect:products";
     }
     @GetMapping(value = "/product")

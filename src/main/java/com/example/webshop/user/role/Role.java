@@ -1,8 +1,6 @@
-package com.example.webshop.user;
+package com.example.webshop.user.role;
 import lombok.*;
-
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Getter
 @Setter
@@ -11,10 +9,17 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Role implements Serializable {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "role")
     private String roleName;
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", roleName='" + roleName + '\'' +
+                '}';
+    }
 }

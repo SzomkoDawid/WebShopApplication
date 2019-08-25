@@ -22,44 +22,51 @@
     </tr>
     </thead>
     <tbody>
-<form action="#" th:action="@{/addProduct}" th:object="${product}" method="post">
-    <tr>
-        <td>
-    <input type="text" placeholder="Autor" th:field="*{author.name}">
-        </td>
-        <td>
-    <input type="text" placeholder="Nazwa produktu" th:field="*{name}">
-        </td>
-        <td>
-    <input type="number" placeholder="Ilość" th:field="*{stockamount}"> szt
-        </td>
-        <td>
-    <input type="url" placeholder="Url Zdjęcia" th:field="*{pictureUrl}">
-        </td>
-        <td>
-    <input type="number" placeholder="Cena" th:field="*{price}"> zł
-        </td>
-        <td>
-    <input type="text" placeholder="Opis" th:field="*{description}">
-        </td>
-        <td>
-    <select name="categoryType">
-        <option th:value="''"  th:text="'Kategoria'"></option>
-        <option th:each="ct : ${productList}" th:value="${ct.category}" th:text="${ct.category}"></option>
-    </select>
-        </td>
-        <td>
-    <select name="productType">
-        <option th:value="''" th:text="'Typ produktu'"></option>
-        <option th:each="pt : ${productList}" th:value="${pt.productType}" th:text="${pt.productType}"></option>
-    </select>
-        </td>
-    <td>
-        <input type="submit" value="dodaj">
-    </td>
-    <input type="reset" value="Wyczyść">
-    </tr>
-</form>
+    <form action="#" th:action="@{/addProduct}" th:object="${product}" method="post">
+        <tr>
+            <td>
+                <input type="text" placeholder="Autor" th:field="*{author.name}">
+            </td>
+            <td>
+                <input type="text" placeholder="Nazwa produktu" th:field="*{name}">
+            </td>
+            <td>
+                <input type="number" placeholder="Ilość" th:field="*{stockamount}"> szt
+            </td>
+            <td>
+                <input type="url" placeholder="Url Zdjęcia" th:field="*{pictureUrl}">
+            </td>
+            <td>
+                <input type="number" placeholder="Cena" th:field="*{price}"> zł
+            </td>
+            <td>
+                <input type="text" placeholder="Opis" th:field="*{description}">
+            </td>
+            <td>
+                <select th:name="cat">
+                    <option th:value="''" th:text="'Kategoria'"></option>
+                    <option th:each="category : ${categoryList}"
+                            th:value="${category.id}"
+                            th:text="${category.categoryType}">
+                    </option>
+                </select>
+            </td>
+            <td>
+                <select th:field="*{productType}">
+                    <option th:value="''" th:text="'Typ produktu'"></option>
+                    <option th:each="state : ${T(com.example.webshop.product.ProductType).values()}"
+                            th:value="${state}"
+                            th:text="${state}">
+                    </option>
+                </select>
+
+            </td>
+            <td>
+                <input type="submit" value="dodaj">
+            </td>
+            <input type="reset" value="Wyczyść">
+        </tr>
+    </form>
     <th:block th:each="product : ${productList}">
         <tr>
             <td th:text="${product.author.name}"></td>

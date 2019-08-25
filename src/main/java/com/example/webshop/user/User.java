@@ -1,14 +1,11 @@
 package com.example.webshop.user;
-
+import com.example.webshop.user.role.Role;
 import lombok.*;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Set;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
@@ -26,11 +23,25 @@ public class User {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "avatar_url")
+    private String avatarUrl;
     @OneToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
-    @OneToMany (fetch = FetchType.EAGER)
+    @OneToMany (cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private Collection<Role> roles = new ArrayList<>();
-    
-}
+    private Set<Role> roles;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
+                ", address=" + address + "role" + roles +
+                '}';
+    }
+ }

@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "addresses")
 @NoArgsConstructor
@@ -20,4 +19,13 @@ public class Address {
     private String street;
     @Column(name = "post_code")
     private String postCode;
+
+    @Override
+    public String toString() {
+        return
+                country + "/" + city + "/" +
+                ", street='" + street + '\'' +
+                ", postCode='" + postCode + '\'' +
+                '}';
+    }
 }

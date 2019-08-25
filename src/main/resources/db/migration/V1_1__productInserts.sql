@@ -24,6 +24,8 @@ INSERT INTO category (id, types_of_category)
 values (3, 3);
 INSERT INTO category (id, types_of_category)
 values (4, 4);
+INSERT INTO category (id, types_of_category)
+values (5, 5);
 INSERT INTO products (author_id, category_id, name, description, price, product_type, stock_amount, picture_url)
 values (1,1, 'Władca Pierścieni: Dwie Wieże', '1954, wydawca: Allen&Unwin', 49.99, 1, 50,
 'https://assets.upflix.pl/media/plakat/2002/the-lord-of-the-rings-the-two-towers__300_427.jpg');
@@ -46,7 +48,7 @@ INSERT INTO products (author_id, category_id, name, description, price, product_
 values (7, 3, 'Ja Ibra', '2012, wydawca: Mellino', 39.99, 3, 38,
 'https://resources.kfi.pl/image/6353976e-60b2-41e0-be08-d4b3fb11127e/550x400/png');
 INSERT INTO products (author_id, category_id, name, description, price, product_type, stock_amount, picture_url)
-values (8, 1, 'Kajko i Kokosz - szkoła latania', '2018, wydawca: Dobra Książka', 12.99, 6, 22,
+values (8, 5, 'Kajko i Kokosz - szkoła latania', '2018, wydawca: Dobra Książka', 12.99, 6, 22,
 'https://ecsmedia.pl/c/15248061947814548-jpg-gallery.big-iext52856194.jpg');
 INSERT INTO products (author_id, category_id, name, description, price, product_type, stock_amount, picture_url)
 values (9, 4, 'W Polityce', '2019, wydawca: tygodnik Angora', 4.99, 6, 11,

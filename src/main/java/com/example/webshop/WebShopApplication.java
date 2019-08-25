@@ -14,6 +14,5 @@ public class WebShopApplication  {
     public static void main(String[] args) {
         logger.info("main test");
         SpringApplication.run(WebShopApplication.class, args);
-        User user = new User();
     }
 }
