@@ -17,21 +17,21 @@ public class ProductController {
         this.productService = productService;
         this.categoryService = categoryService;
     }
-    @GetMapping({"/products", "products"})
+    @RequestMapping(value = {"/products", "products"}, method = RequestMethod.GET)
     public String getAllProducts(Model model){
         model.addAttribute("productList", productService.findAll());
         model.addAttribute("categoryList", categoryService.findAll());
         model.addAttribute("product", new Product());
         return "products";
     }
-    @PostMapping("/addProduct")
+    @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String addProduct(Model model, @ModelAttribute Product product, @ModelAttribute(name = "cat") String cat_id){
         Category category = categoryService.findById(Long.valueOf(cat_id));
         product.setCategory(category);
         model.addAttribute(productService.addProduct(product));
         return "redirect:products";
     }
-    @GetMapping(value = "/product")
+    @RequestMapping(value = "/product", method = RequestMethod.GET)
     public String addProduct(Model model) {
         model.addAttribute("productTypes", ProductType.values());
         return "addProduct";

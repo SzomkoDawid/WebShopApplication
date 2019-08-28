@@ -1,7 +1,8 @@
 package com.example.webshop.user;
-import com.example.webshop.user.role.Role;
 import lombok.*;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -12,7 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column (unique = true)
     private String login;
@@ -28,8 +29,9 @@ public class User {
     @OneToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
-    @OneToMany (cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns=@JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
     @Override
     public String toString() {
@@ -42,6 +44,6 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", avatarUrl='" + avatarUrl + '\'' +
                 ", address=" + address + "role" + roles +
-                '}';
+                  '}';
     }
  }
