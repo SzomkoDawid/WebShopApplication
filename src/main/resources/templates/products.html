@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Produkty</title>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/products.css}"/>
+   <!-- <link type="text/css" rel="stylesheet" th:href="@{/css/products.css}"/>-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 </head>
@@ -59,7 +59,6 @@
                             th:text="${state}">
                     </option>
                 </select>
-
             </td>
             <td>
                 <input type="submit" value="dodaj">
@@ -72,10 +71,10 @@
             <td th:text="${product.author.name}"></td>
             <td th:text="${product.name}"></td>
             <td th:text="${product.stockamount}"></td>
-            <td>
-                <img th:attr="src=${product.pictureUrl}"
-                     height="50" width="50"/></img>
-            </td>
+                <td>
+                    <img th:attr="src=${product.pictureUrl}"
+                         height="50" width="50"/></img>
+                </td>
             <td th:text="${product.price}"></td>
             <td th:text="${product.description}"></td>
             <td th:text="${product.category}"></td>

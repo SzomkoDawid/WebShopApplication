@@ -1,8 +1,9 @@
 package com.example.webshop.user;
+import com.example.webshop.user.address.Address;
+import com.example.webshop.user.role.Role;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -26,7 +27,7 @@ public class User {
     private String lastName;
     @Column(name = "avatar_url")
     private String avatarUrl;
-    @OneToOne (fetch = FetchType.EAGER)
+    @OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

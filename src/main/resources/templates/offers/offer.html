@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Oferta</title>
+</head>
+<body>
+<center>
+    <H1>KSIĄŻKI</H1>
+    <th:block th:each="prod : ${productList}">
+    <div th:if="${prod.category.categoryType==prod.category.categoryType.BOOK}">
+        <div th:text="${prod.name}"/></div>
+    </div>
+</th:block>
+    <H1>EBOOKI</H1>
+<th:block th:each="prod : ${productList}">
+    <div th:if="${prod.category.categoryType==prod.category.categoryType.EBOOK}">
+        <div th:text="${prod.name}"/></div>
+    </div>
+</th:block>
+    <H1>AUDIOBOOKI</H1>
+    <th:block th:each="prod : ${productList}">
+        <div th:if="${prod.category.categoryType==prod.category.categoryType.AUDIOBOOK}">
+            <div th:text="${prod.name}"/></div>
+        </div>
+    </th:block>
+    <H1>PRASA</H1>
+    <th:block th:each="prod : ${productList}">
+        <div th:if="${prod.category.categoryType==prod.category.categoryType.PRESS}">
+            <div th:text="${prod.name}"/></div>
+        </div>
+    </th:block>
+    <H1>INNE</H1>
+    <th:block th:each="prod : ${productList}">
+        <div th:if="${prod.category.categoryType==prod.category.categoryType.OTHER}">
+            <div th:text="${prod.name}"/></div>
+        </div>
+    </th:block>
+    <p>
+    <a href="/home/home">Cofnij do strony głównej</a>
+    </p>
+</center>
+</body>
+</html>

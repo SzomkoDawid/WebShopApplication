@@ -1,6 +1,8 @@
 package com.example.webshop.product;
 
+import com.example.webshop.category.Category;
 import com.example.webshop.category.CategoryRepository;
+import com.example.webshop.category.CategoryType;
 import com.example.webshop.product.author.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,4 +40,10 @@ public class ProductServiceImpl implements ProductService {
     public void deleteById(Long id) {
         productRepository.deleteById(id);
     }
+
+    @Override
+    public Product findProductByCategory(CategoryType categoryType) {
+       return productRepository.findProductByCategory(categoryType);
+    }
+
 }

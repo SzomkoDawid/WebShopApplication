@@ -1,4 +1,5 @@
 package com.example.webshop.configuration;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,36 +20,39 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    private final String USERS_QUERY = "SELECT u.login, u.password,1 FROM users u WHERE u.login=?";
+    private final String ROLES_QUERY = "select u.login, r.role from users u inner join user_role ur on (u.id = ur.user_id) inner join roles r on (ur.role_id=r.role_id) where u.login=?";
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Autowired
     private DataSource dataSource;
 
-    private final String USERS_QUERY = "select login, password, active from user where login=?";
-    private final String ROLES_QUERY = "select u.login, r.role from user u inner join user_role ur on (u.id = ur.user_id) inner join role r on (ur.role_id=r.role_id) where u.login=?";
-
     @Override
-    protected void configure (AuthenticationManagerBuilder auth) throws Exception{
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().usersByUsernameQuery(USERS_QUERY)
                 .authoritiesByUsernameQuery(ROLES_QUERY).dataSource(dataSource).passwordEncoder(bCryptPasswordEncoder);
-    }
-    @Override
-    protected void configure (HttpSecurity http) throws Exception{
-        http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/login").permitAll()
-                .antMatchers("/signup").permitAll().antMatchers("/home/**").hasAuthority("ADMIN")
-                .anyRequest().authenticated().and().csrf().disable().formLogin().loginPage("/login").
-                failureUrl("/login?error=true").defaultSuccessUrl("/home/home").usernameParameter("login")
-                .passwordParameter("password").and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
-                .and().rememberMe().tokenRepository(persistentTokenRepository()).tokenValiditySeconds(60*60).and()
-                .exceptionHandling().accessDeniedPage("/access_denied");
-    }
-    @Bean
-    public PersistentTokenRepository persistentTokenRepository() {
-        JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
-        db.setDataSource(dataSource);
-        return db;
+        auth.inMemoryAuthentication().withUser("dawid94").
+                password(bCryptPasswordEncoder.encode("password")).roles("ADMIN");
     }
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        //all
+        http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/login").permitAll()
+                .antMatchers("/signup").permitAll();
+        //only users
+        http.authorizeRequests()
+                .antMatchers("/home/**").hasAnyAuthority("USER")
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .csrf().disable()
+                .formLogin().loginPage("/login")
+                .failureUrl("/login?error=true").defaultSuccessUrl("/default")
+                .usernameParameter("login")
+                .passwordParameter("password")
+                .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");
+
+    }
 }

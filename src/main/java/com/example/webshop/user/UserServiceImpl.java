@@ -1,5 +1,8 @@
 package com.example.webshop.user;
 
+import com.example.webshop.user.address.AddressRepository;
+import com.example.webshop.user.role.Role;
+import com.example.webshop.user.role.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

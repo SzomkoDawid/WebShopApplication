@@ -1,0 +1,18 @@
+h1{
+    font-style: italic;
+    font-kerning: initial;
+}
+
+#top-panel{
+    font-size: medium;
+    background: whitesmoke;
+    align-items: center;
+}
+#bottom-panel{
+    font-size: 20px;
+    font-family: "Arial";
+}
+#nav{
+    align-items: center;
+}
+

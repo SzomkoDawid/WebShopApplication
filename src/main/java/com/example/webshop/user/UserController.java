@@ -13,25 +13,23 @@ import javax.validation.Valid;
 public class UserController {
 
     private UserService userService;
-
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @RequestMapping(value = {"/users", "roleName"}, method = RequestMethod.GET)
-    public Model findAllUsers(Model model) {
+    @RequestMapping(value = {"user/users"}, method = RequestMethod.GET)
+    public String findAllUsers(Model model) {
         model.addAttribute("userList", userService.findAll());
-        return model;
+        return "user/users";
     }
 
     @RequestMapping(value = {"/", "login"}, method = RequestMethod.GET)
     public ModelAndView login() {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("user/login");
-        return model;
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user/login");
+        return modelAndView;
     }
-
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public ModelAndView signup() {
         ModelAndView model = new ModelAndView();
@@ -58,30 +56,21 @@ public class UserController {
         } else {
             userService.saveUser(user);
             model.addObject("msg", "Użytkownik został zarejestrowany pomyślnie!");
-            model.addObject("log", "zaloguj się");
+            model.addObject("log", "Powrót do logowania");
             model.addObject("user", new User());
             model.setViewName("user/signup");
         }
         return model;
     }
 
-    @RequestMapping(value = {"/home/home"}, method = RequestMethod.GET)
-    public ModelAndView home() {
+    @RequestMapping(value = {"/admin/admin"}, method = RequestMethod.GET)
+    public ModelAndView admin() {
         ModelAndView model = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByLogin(auth.getName());
-
-        model.addObject("userName", user.getFirstName() + " " + user.getLastName());
-        model.addObject("address", user.getAddress());
+        model.addObject("login", user.getLogin());
         model.addObject("avatar", user.getAvatarUrl());
-        model.setViewName("home/home");
-        return model;
-    }
-
-    @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
-    public ModelAndView  accessDenied() {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("errors/access_denied");
+        model.setViewName("admin/admin");
         return model;
     }
 }

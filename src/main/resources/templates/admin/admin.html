@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="card text-center">
+        <div class="card-header">
+            <strong>Panel Administratora</strong>
+        </div>
+            <div class="container">
+                <p>Witaj, <strong><span th:utext="${login}"></span></strong></span></p>
+                <p>
+                    <img th:attr="src=${avatar}" height="50" width="50"/></img>
+                </p>
+                <p>
+                    <a th:href="@{/logout}">Wyloguj</a>
+                </p>
+            </div>
+        <div class="card-body">
+            <a href="/products" class="btn btn-primary">Produkty</a>
+            <a href="/user/users" class="btn btn-secondary">Użytkownicy</a>
+        </div>
+        <div class="card-footer text-muted">
+        </div>
+        </div>
+</center>
+</body>
+</html>
