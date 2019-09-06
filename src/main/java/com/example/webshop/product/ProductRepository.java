@@ -4,5 +4,4 @@ import org.springframework.data.repository.CrudRepository;
 
 interface ProductRepository extends CrudRepository<Product, Long> {
     void deleteById(Long id);
-    Product findProductByCategory(CategoryType categoryType);
 }

@@ -1,10 +1,14 @@
 package com.example.webshop.product;
+
 import com.example.webshop.category.Category;
 import com.example.webshop.category.CategoryService;
+import com.example.webshop.category.CategoryType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
 @Controller
 public class ProductController {
     private ProductService productService;
@@ -43,10 +47,9 @@ public class ProductController {
         productService.deleteById(id);
         return "redirect:/products";
     }
-    @RequestMapping(value = {"offers/offer"}, method = RequestMethod.GET)
-    public String offers(Model model) {
+    @RequestMapping(value = {"offer/menu"}, method = RequestMethod.GET)
+    public String getProductsForCategories(Model model) {
         model.addAttribute("productList", productService.findAll());
-        return "offers/offer";
+        return "offer/menu";
     }
-
 }
