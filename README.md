@@ -16,7 +16,9 @@ Technologies used:
 Authentication and authorization
 
 To login as admin use:
+
 login : admin
+
 password : password
 
 Admin View :
@@ -24,7 +26,9 @@ Admin View :
 * Add product and save it in database
 * Delete product from view and database
 * Preview of user list
+
 User View :
+
 * Logging into your own account
 * Preview of product list (products are categorized)
 * Adding product to your own cart 
