@@ -71,34 +71,3 @@ CREATE TABLE products
     FOREIGN KEY (author_id) REFERENCES authors (id),
     FOREIGN KEY (category_id) REFERENCES category (id)
 );
-
-DROP TABLE if exists order_lines;
-CREATE table order_lines
-(
-    id         bigint(20) NOT NULL AUTO_INCREMENT,
-    product_id bigint(20) NOT NULL,
-    FOREIGN KEY (product_id) REFERENCES products (id),
-    PRIMARY KEY (id)
-);
-
-drop table if exists orders;
-CREATE table orders
-(
-    id               bigint(20)                     NOT NULL AUTO_INCREMENT,
-    total_cost       int(20)                        NOT NULL,
-    delivery_address VARCHAR(40)                    NOT NULL,
-    date_of_order    DATETIME                       NOT NULL,
-    order_lines_id   bigint(40)                     NOT NULL,
-    users_id         bigint(20)                     NOT NULL,
-    status           enum ('OCZEKUJACE', 'WYSLANE') NOT NULL,
-    primary key (id),
-    FOREIGN KEY (order_lines_id) REFERENCES order_lines (id),
-    FOREIGN KEY (users_id) REFERENCES users (id)
-);
-
-drop table if exists cart;
-CREATE table cart
-(
-    order_lines_id bigint(20) NOT NULL,
-    FOREIGN KEY (order_lines_id) REFERENCES order_lines (id)
-);
