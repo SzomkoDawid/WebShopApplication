@@ -1,7 +1,9 @@
 package com.example.webshop.product;
-import com.example.webshop.category.CategoryType;
 import org.springframework.data.repository.CrudRepository;
+
+import java.util.Optional;
 
 interface ProductRepository extends CrudRepository<Product, Long> {
     void deleteById(Long id);
+    Optional<Product> findById(Long id);
 }

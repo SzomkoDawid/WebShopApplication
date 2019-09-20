@@ -15,12 +15,10 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private AddressRepository addressRepository;
-
     @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
                            BCryptPasswordEncoder bCryptPasswordEncoder, AddressRepository addressRepository) {
@@ -29,25 +27,20 @@ public class UserServiceImpl implements UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.addressRepository = addressRepository;
     }
-
     @Override
     public List<User> findAll() {
         List<User> list = new ArrayList<>();
         userRepository.findAll().forEach(list::add);
         return list;
     }
-
     @Override
     public User findByLogin(String login) {
         return userRepository.findByLogin(login);
     }
-
     @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
-
-
     @Transactional
     @Override
     public void saveUser(User user) {

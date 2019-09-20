@@ -38,4 +38,13 @@ public class HomeController {
         modelAndView.setViewName("home/home");
         return modelAndView;
     }
+    @RequestMapping(value = {"/admin/admin"}, method = RequestMethod.GET)
+    public ModelAndView admin(ModelAndView modelAndView){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByLogin(auth.getName());
+        modelAndView.addObject("login", user.getLogin());
+        modelAndView.addObject("avatar", user.getAvatarUrl());
+        modelAndView.setViewName("admin/admin");
+        return modelAndView;
+    }
 }

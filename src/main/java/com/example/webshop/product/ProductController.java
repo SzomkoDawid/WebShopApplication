@@ -1,13 +1,10 @@
 package com.example.webshop.product;
-
 import com.example.webshop.category.Category;
 import com.example.webshop.category.CategoryService;
-import com.example.webshop.category.CategoryType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ProductController {
@@ -48,8 +45,13 @@ public class ProductController {
         return "redirect:/products";
     }
     @RequestMapping(value = {"offer/menu"}, method = RequestMethod.GET)
-    public String getProductsForCategories(Model model) {
+    public String getProductsByCategories(Model model) {
         model.addAttribute("productList", productService.findAll());
         return "offer/menu";
+    }
+    @RequestMapping(value = {"offer/buyProduct/{id}"}, method = RequestMethod.GET)
+    public String details(Model model, @ModelAttribute Product product, @PathVariable Long id){
+        model.addAttribute("list", productService.findById(id).get());
+        return "offer/buyProduct";
     }
 }

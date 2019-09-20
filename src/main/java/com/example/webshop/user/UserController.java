@@ -1,14 +1,11 @@
 package com.example.webshop.user;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
-
 @Controller
 public class UserController {
 
@@ -60,17 +57,6 @@ public class UserController {
             model.addObject("user", new User());
             model.setViewName("user/signup");
         }
-        return model;
-    }
-
-    @RequestMapping(value = {"/admin/admin"}, method = RequestMethod.GET)
-    public ModelAndView admin() {
-        ModelAndView model = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findByLogin(auth.getName());
-        model.addObject("login", user.getLogin());
-        model.addObject("avatar", user.getAvatarUrl());
-        model.setViewName("admin/admin");
         return model;
     }
 }

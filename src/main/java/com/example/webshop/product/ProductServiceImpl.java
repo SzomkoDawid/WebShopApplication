@@ -1,13 +1,12 @@
 package com.example.webshop.product;
-
 import com.example.webshop.category.CategoryRepository;
-import com.example.webshop.category.CategoryType;
 import com.example.webshop.product.author.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -39,4 +38,10 @@ public class ProductServiceImpl implements ProductService {
     public void deleteById(Long id) {
         productRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Product> findById(Long id) {
+       return productRepository.findById(id);
+    }
+
 }

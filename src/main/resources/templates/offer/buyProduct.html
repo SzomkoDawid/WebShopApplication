@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Oferta</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link type="text/css" rel="stylesheet" th:href="@{/css/buyProduct.css}"/>
+</head>
+<body>
+<center>
+<th:block th:field="*{list[__${list.id}__].name}">
+    <h1>
+    <div th:text="${list.name}"></div>
+    </h1>
+    <img th:attr="src=${list.pictureUrl}" height="200" width="200">
+    <div th:text="'CENA : '"></div>
+    <h4>
+    <strong>
+        <div th:text="${list.price} + ' ' + 'PLN'"></div></strong>
+    </h4>
+    <a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">Dodaj do koszyka</a>
+</th:block>
+</center>
+</body>
+</html>

@@ -18,29 +18,29 @@
     </tr>
     </thead>
     <td>
-    <th:block th:each="product : ${productList}">
-        <div th:if="*{product.category.categoryType.equals(product.category.categoryType.BOOK)}">
-            <div th:text="*{product.name}"></div>
-            <img th:attr="src=${product.pictureUrl}"
-                 height="50" width="50"/></img>
-        </div>
-    </th:block>
+        <th:block th:each="product : ${productList}">
+            <div th:if="*{product.category.categoryType.equals(product.category.categoryType.BOOK)}">
+                <div th:text="*{product.name}"></div>
+                <a th:href="@{buyProduct/{id} (id=${product.id})}"><img th:attr="src=${product.pictureUrl}"
+                                                                        height="50" width="50"/></img></a>
+            </div>
+        </th:block>
     </td>
     <td>
-    <th:block th:each="product : ${productList}">
-        <div th:if="*{product.category.categoryType.equals(product.category.categoryType.EBOOK)}">
-            <div th:text="*{product.name}"></div>
-            <img th:attr="src=${product.pictureUrl}"
-                       height="50" width="50"/></img>
-        </div>
-    </th:block>
+        <th:block th:each="product : ${productList}">
+            <div th:if="*{product.category.categoryType.equals(product.category.categoryType.EBOOK)}">
+                <div th:text="*{product.name}"></div>
+            <a th:href="@{buyProduct/{id} (id=${product.id})}"><img th:attr="src=${product.pictureUrl}"
+                                                                        height="50" width="50"/></a>
+            </div>
+        </th:block>
     </td>
     <td>
         <th:block th:each="product : ${productList}">
             <div th:if="*{product.category.categoryType.equals(product.category.categoryType.AUDIOBOOK)}">
                 <div th:text="*{product.name}"></div>
-                <img th:attr="src=${product.pictureUrl}"
-                     height="50" width="50"/></img>
+                <a th:href="@{buyProduct/{id} (id=${product.id})}"><img th:attr="src=${product.pictureUrl}"
+                                                                        height="50" width="50"/></img></a>
             </div>
         </th:block>
     </td>
@@ -48,8 +48,8 @@
         <th:block th:each="product : ${productList}">
             <div th:if="*{product.category.categoryType.equals(product.category.categoryType.PRESS)}">
                 <div th:text="*{product.name}"></div>
-                <img th:attr="src=${product.pictureUrl}"
-                     height="50" width="50"/></img>
+                <a th:href="@{buyProduct/{id} (id=${product.id})}"><img th:attr="src=${product.pictureUrl}"
+                                                                        height="50" width="50"/></img></a>
             </div>
         </th:block>
     </td>
@@ -57,8 +57,8 @@
         <th:block th:each="product : ${productList}">
             <div th:if="*{product.category.categoryType.equals(product.category.categoryType.OTHER)}">
                 <div th:text="*{product.name}"></div>
-                <img th:attr="src=${product.pictureUrl}"
-                     height="50" width="50"/></img>
+                <a th:href="@{buyProduct/{id} (id=${product.id})}"><img th:attr="src=${product.pictureUrl}"
+                                                                        height="50" width="50"/></img></a>
             </div>
         </th:block>
     </td>
