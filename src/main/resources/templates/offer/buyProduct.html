@@ -13,13 +13,24 @@
     <h1>
     <div th:text="${list.name}"></div>
     </h1>
+    <h2>
+        <div th:text="${list.author}"></div>
+    </h2>
+    <h4>
+        <ul class="list-group list-group-flush">
+            <li th:text="${list.description}" class="list-group-item"></li>
+        </ul>
+    </h4>
     <img th:attr="src=${list.pictureUrl}" height="200" width="200">
     <div th:text="'CENA : '"></div>
-    <h4>
+    <h3>
     <strong>
         <div th:text="${list.price} + ' ' + 'PLN'"></div></strong>
-    </h4>
+    </h3>
     <a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">Dodaj do koszyka</a>
+    <p>
+    <a href="/offer/menu">wróć do listy produktów</a>
+    </p>
 </th:block>
 </center>
 </body>

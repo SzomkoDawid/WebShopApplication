@@ -5,6 +5,34 @@ When you're done, you can delete the content in this README and update the file 
 *We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
 
 ---
+## WEBSHOP.PL
+
+Simple application of the online bookstore. 
+Technologies used:
+* Java 8
+* Spring (Data, JPA, MVC, Security)
+* Hibernate
+* MySQL
+* HTML/CSS (Bootstrap & Thymeleaf)
+* Flyway
+* Lombok
+* Maven
+
+## Functionalities
+
+Authentication and authorization
+
+Admin View :
+* Logging into your own account
+* Add product and save it in database
+* Delete product from view and database
+* Preview of user list
+User View :
+* Logging into your own account
+* Preview of product list (products are categorized)
+* Adding product to your own cart 
+
+and more :) app is still improving
 
 ## Edit a file
 
