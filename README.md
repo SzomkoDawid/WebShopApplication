@@ -24,14 +24,14 @@ login : admin
 password : password
 
 Admin View :
-* Logging into your own account
+* Login into your own account
 * Add product and save it in database
 * Delete product from view and database
 * Preview of user list
 
 User View :
 
-* Logging into your own account
+* Login into your own account
 * Preview of product list (products are categorized)
 * Adding product to your own cart 
 
