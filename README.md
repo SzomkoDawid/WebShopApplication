@@ -6,7 +6,9 @@ Technologies used:
 * Spring (Data, JPA, MVC, Security)
 * Hibernate
 * MySQL
-* HTML/CSS (Bootstrap & Thymeleaf)
+* HTML/CSS 
+* Bootstrap  
+* Thymeleaf
 * Flyway
 * Lombok
 * Maven
